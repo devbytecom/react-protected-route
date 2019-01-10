@@ -1,6 +1,6 @@
-var path = require('path');
+import path from 'path';
 
-module.exports = {
+const webpackConfig = {
     entry: './src/index.js',
     mode: process.env.NODE_ENV || 'development',
     output: {
@@ -20,3 +20,5 @@ module.exports = {
         ]
     }
 };
+
+export default webpackConfig;
