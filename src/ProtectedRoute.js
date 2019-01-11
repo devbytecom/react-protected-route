@@ -1,22 +1,23 @@
 import React, { Component } from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { bool, string } from 'prop-types';
+import { bool, string, func } from 'prop-types';
 
 class ProtectedRoute extends Component {
     static propTypes = {
-        isProtected: bool.isRequired,
-        redirectTo: string.isRequired
+        isAuthenticated: bool.isRequired,
+        redirectTo: string.isRequired,
+        component: func
     };
 
     static defaultProps = {
-        isProtected: false,
+        isAuthenticated: false,
         redirectTo: '/'
     };
 
     render() {
-        const { isProtected, redirectTo, component: ProtectedComponent, ...rest } = this.props;
+        const { isAuthenticated, redirectTo, component: ProtectedComponent, ...rest } = this.props;
 
-        if (isProtected) {
+        if (!isAuthenticated) {
             return <Redirect to={redirectTo} />;
         }
 
