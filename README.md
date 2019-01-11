@@ -1,6 +1,8 @@
 react-protected-route
 ============================
 
+[![Build Status](https://travis-ci.com/devbytecom/react-protected-route.svg?branch=master)](https://travis-ci.com/devbytecom/react-protected-route)
+
 A ReactJS route component that redirects users trying to access a protected route.
 
 # Example
