@@ -17,11 +17,7 @@ class ProtectedRoute extends Component {
     render() {
         const { isAuthenticated, redirectTo, component: ProtectedComponent, ...rest } = this.props;
 
-        if (!isAuthenticated) {
-            return <Redirect to={redirectTo} />;
-        }
-
-        return <Route render={props => (<ProtectedComponent {...props} />)} {...rest} />;
+        return <Route render={props => (isAuthenticated ? <ProtectedComponent {...props} /> : <Redirect to={redirectTo} />)} {...rest} />;
     }
 }
 
