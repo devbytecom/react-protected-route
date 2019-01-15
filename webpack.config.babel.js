@@ -5,7 +5,8 @@ const webpackConfig = {
     mode: process.env.NODE_ENV || 'development',
     output: {
         path: path.resolve(__dirname, 'build'),
-        filename: 'index.js'
+        filename: 'index.js',
+        libraryTarget: 'commonjs2'
     },
     resolve: {
         modules: [path.resolve(__dirname, 'src'), 'node_modules'],
