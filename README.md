@@ -9,26 +9,31 @@ react-protected-route
 A ReactJS route component that redirects users trying to access a protected route.
 
 # Example
-The code below assumes `isAuthenticated` is `true`, and will render the protected route.
 ```js
+import React from "react";
+import { Route, Switch } from "react-router-dom";
 import ProtectedRoute from "react-protected-route";
 
-// this can be read from your state which looks at 
+// this can be read from your state which looks at
 // login and/or any logic to protect certain routes.
-const isLoggedIn = false; 
+const isLoggedIn = false;
 
 // Example usage
-const Routes = () => 
+const Routes = () =>
 <Switch>
+    <Route path="/" render={() => <p>Homepage</p>} />
     <ProtectedRoute
-        isAuthenticated={isLoggedIn}
-        redirectTo="/login"
         path="/myaccount"
         component={() => <p>Protected account access</p>}
+        predicate={isLoggedIn} // only show when user is logged in
+        redirectTo="/login" // otherwise redirect to '/login'
     />
-    <Route
+    <ProtectedRoute
         path="/login"
         render={() => <p>Please sign in to access your account.</p>}
+        predicate={!isLoggedIn} // only show when not logged in
+        redirectTo="/" // otherwise redirect to '/'
+        useFrom // unless ProtectedRoute recorded where they came from, then redirect to there
     />
 </Switch>;
 ```
